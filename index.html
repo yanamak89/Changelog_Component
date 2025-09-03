@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="uk">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Changelog Component</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <main class="card" role="list">
+        <section class="card" aria-labelledby="changelog-title">
+            <header class="card__header">
+                <h1 id="changelog-title" class="title">Changelog</h1>
+                <p class="subtitle">Here's everything we have shipped in the past few days</p>
+            </header>
+            <!-- Таймлайн -->
+            <ol class="timeline" role="list">
+        <!-- Елемент таймлайну -->
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-09-03">September 3, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Announcing Projects on Frontend Roadmap</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-28">August 28, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Build your learning habits with learning streaks</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-25">August 25, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Git and GitHub Roadmap</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-22">August 22, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Submit your project solution and get feedback</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-15">August 15, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Backend Project Ideas</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-10">August 10, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Redis roadmap</p>
+                </li>
+
+                <li class="timeline__item">
+                    <time class="timeline__date" datetime="2024-08-01">August 1, 2024</time>
+                    <div class="timeline__marker" aria-hidden="true"></div>
+                    <p class="timeline__content">Changelog page to help you stay in the loop</p>
+                </li>
+
+                <!-- Хвіст вертикальної лінії -->
+                <li class="timeline__tail" aria-hidden="true"></li>
+            </ol>
+            <!-- Хвіст вертикальної лінії -->
+            <footer class="card__footer">
+            <a class="btn" href="#" role="button">Visit Complete Changelog</a>
+            </footer>
+        </section>
+
+        </main>
+    </body>
+</html>

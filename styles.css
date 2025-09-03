@@ -1,0 +1,187 @@
+/* ---- Design tokens ---- */
+:root{
+  --bg: #f7f7f7;
+  --fg: #0f0f0f;
+  --muted: #7a7a7a;
+  --card: #ffffff;
+  --border: #d6d6d6;
+  --accent: #0f0f0f;
+
+  --radius-xl: 18px;
+  --radius-2xl: 24px;
+
+  --shadow: 0 2px 8px rgba(0,0,0,.06), 0 12px 24px rgba(0,0,0,.06);
+  --date-col: clamp(160px, 26vw, 220px); /* ширина колонки з датою */
+  --gap: 18px;                           /* проміжок між колонками */
+  --marker: 14px;                         /* діаметр кружечка */
+  --list-pad: clamp(12px, 4vw, 48px);     /* внутрішній відступ .timeline зліва */
+
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg: #0b0b0b;
+    --fg: #f5f5f5;
+    --muted: #a0a0a0;
+    --card: #151515;
+    --border: #2a2a2a;
+    --accent: #f5f5f5;
+    --shadow: 0 2px 12px rgba(0,0,0,.4);
+  }
+}
+
+/* ---- Base ---- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color: var(--fg);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+/* ---- Layout ---- */
+.container{
+  max-width: 980px;
+  margin: 48px auto;
+  padding: 0 20px;
+}
+
+.card{
+  background: var(--card);
+  border: 2px solid var(--fg);
+  border-radius: var(--radius-2xl);
+  padding: clamp(20px, 4vw, 48px);
+  box-shadow: var(--shadow);
+}
+
+.card__header{
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.title{
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  margin: 0 0 8px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.subtitle{
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+/* ---- Timeline ---- */
+.timeline{
+  position: relative;
+  list-style: none;
+  margin: 32px 0 28px;
+  padding: 0 0 0 clamp(12px, 4vw, 48px); /* трохи відступу зліва для лінії */
+}
+
+.timeline__date{ flex: 0 0 var(--date-col); }
+.timeline__item{ display:flex; gap: var(--gap); align-items:flex-start; }
+.timeline__marker{ width: var(--marker); height: var(--marker); border-radius: 50%; background: var(--fg); position: relative; z-index:1; }
+
+/* Вертикальна лінія */
+.timeline::before{
+    content:"";
+  position:absolute;
+  /* формула: відступ списку + ширина дати + gap + половина маркера */
+  left: calc(var(--list-pad) + var(--date-col) + var(--gap) + var(--marker) / 2);
+  top:0; bottom:0;
+  width:2px;
+  background: var(--fg);
+  transform: translateX(-1px); /* щоб товщина виглядала симетрично */
+  z-index:0;   
+}
+
+/* Хвіст (коротка лінія внизу макету) */
+.timeline__tail{
+  height: 36px;
+}
+
+/* Пункт таймлайну як флекс-рядок: дата | крапка | контент */
+.timeline__item{
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 14px 0;
+  position: relative;
+}
+
+/* Дата зліва, фіксована колонка щоб красиво вирівняти */
+.timeline__date{
+  flex: 0 0 clamp(160px, 26vw, 220px);
+  text-align: right;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+/* Крапка-мітка */
+.timeline__marker {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--fg);
+  z-index: 1;
+}
+
+/* Текст справа */
+.timeline__content{
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 16px;
+}
+
+/* ---- Button ---- */
+.card__footer{
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.btn{
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--card);
+  text-decoration: none;
+  font-weight: 500;
+  border: 2px solid var(--fg);
+  transition: transform .06s ease, box-shadow .12s ease;
+}
+.btn:focus-visible{
+  outline: 3px solid #5b9cff;
+  outline-offset: 3px;
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{ transform: translateY(0); }
+
+/* ---- Small screens ---- */
+@media (max-width: 640px){
+  .timeline__item{
+    gap: 12px;
+  }
+  .timeline::before{
+    left: 112px;
+  }
+  .timeline__date{
+    flex-basis: 100px;
+    font-size: 13px;
+  }
+  .timeline__content{
+    font-size: 15px;
+  }
+}
+
+@media (max-width:640px){
+  :root{ --date-col: 100px; } /* або clamp з іншими межами */
+}
